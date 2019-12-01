@@ -24,8 +24,6 @@ class Resource implements Runnable{
 			}
 		}
 	}
-	
-	
 }
 /**
  * 死锁代码验证 多个线程同时锁住多个资源不释放导致的。
@@ -40,9 +38,10 @@ public class DeadLockDemo {
 	public static void main(String[] args) {
 		String lock1 = "1";
 		String lock2 = "2";
-		Resource resource = new Resource("1","2");
-		Resource resource2 = new Resource("2","1");
+		Resource resource = new Resource(lock1,lock2);
+		Resource resource2 = new Resource(lock2,lock1);
 		new Thread(resource).start();
 		new Thread(resource2).start();
+		
 	}
 }

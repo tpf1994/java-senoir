@@ -11,8 +11,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 class Mycache{
 	
 	private volatile Map<String, Object> map = new HashMap();
-	private Lock lock = new ReentrantLock();
 //	private ReadWriteLock rwLock = new ReentrantReadWriteLock();
+	Lock lock = new ReentrantLock();
 	public void put(String key,Object val) throws InterruptedException {
 //		rwLock.writeLock().lock();
 		lock.lock();
@@ -69,9 +69,5 @@ public class ReentRWLock {
 				}
 			},String.valueOf(i)).start();
 		}
-		
-//		Thread.sleep(900);
-		
-//		System.out.println(mycache.getHashMap());		
 	}
 }
